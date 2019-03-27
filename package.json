@@ -1,0 +1,17 @@
+{
+  "name": "learn",
+  "version": "0.0.0",
+  "description": "No description",
+  "author": null,
+  "private": true,
+  "main": "node_modules/expo/AppEntry.js",
+  "dependencies": {
+    "expo": "^32.0.0",
+    "react": "16.5.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
+    "osrs-api": "0.1.2",
+    "react-native-material-bottom-navigation": "1.0.2",
+    "react-native-modal": "9.0.0",
+    "react-native-paper": "2.2.8"
+  }
+}
