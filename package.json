@@ -12,6 +12,7 @@
     "osrs-api": "0.1.2",
     "react-native-material-bottom-navigation": "1.0.2",
     "react-native-modal": "9.0.0",
-    "react-native-paper": "2.2.8"
+    "react-native-paper": "2.2.8",
+    "react-native-progress": "3.6.0"
   }
 }

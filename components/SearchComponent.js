@@ -20,7 +20,8 @@ export default class SearchComponent extends Component {
     const getUserId = async () => {
       let userId = '';
       try {
-        userId = await AsyncStorage.getItem('user') || '';
+        userId = await AsyncStorage.getItem('user') || 'Grazima';
+        console.log(userId);
       } catch (error) {
         // Error retrieving data
         console.log(error.message);

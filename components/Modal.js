@@ -1,10 +1,14 @@
 import React, { Fragment, Component } from "react";
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity, ScrollView } from "react-native";
 import Button from "./Button";
 
 import Modal from "react-native-modal";
 
 import cardStyles from '../assets/CardStyles';
+
+import Links from "./ModalLinks";
+import Bar from "./ProgressBar";
+import Remainder from "./RemainingXp";
 
 class SwipeableModal extends Component {
   state = {
@@ -28,36 +32,55 @@ class SwipeableModal extends Component {
         >
           <View style={styles.modalContainer}>
             <View style={[styles.modalHeader, cardStyles[data.name]]}>
-              <View style={{alignItems: 'end', flex: 1, alignSelf: 'stretch', flexDirection: 'row' }}>
+              <View style={{justifyContent: 'flex-end', flex: 1, flexDirection: 'row' }}>
                 <TouchableOpacity
                   onPress={this.closeModal}
                 >
                   <Text style={styles.closeBtn}>X</Text>
                 </TouchableOpacity>
               </View>
+              <View style={styles.modalHeaderContent}>
                 <Text style={styles.header}>
                   {data.name.toUpperCase()}
                 </Text>
-              <Text style={styles.level}>
-                {data.level}
-              </Text>
+                <Bar xp={data.experience} level={data.level}/>
+              </View>
             </View>
             <View style={styles.row}>
-              <Text style={styles.description}>
-                Experience
-              </Text>
-              <Text style={styles.description}>
-                {data.experience}
-              </Text>
+              <View style={styles.modalInfo}>
+                <Text style={styles.infoStat}>
+                  {data.level}
+                </Text>
+                <Text style={styles.description}>
+                  Level
+                </Text>
+              </View>
+              <View style={styles.modalInfo}>
+                <Text style={styles.infoStat}>
+                  {data.experience}
+                </Text>
+                <Text style={styles.description}>
+                  Exp
+                </Text>
+              </View>
             </View>
             <View style={styles.row}>
-              <Text style={styles.description}>
-                Rank: 
-              </Text>
-              <Text style={styles.description}>
-                {data.rank}
-              </Text>
+              <View style={styles.modalInfo}>
+                <Text style={styles.infoStat}>
+                  {data.rank}
+                </Text>
+                <Text style={styles.description}>
+                  Rank 
+                </Text>
+              </View>
+              <View style={styles.modalInfo}>
+                <Remainder level={data.level} xp={data.experience} />
+                <Text style={styles.description}>
+                  Exp remaining 
+                </Text>
+              </View>
             </View>
+            <Links stat={data.name}/>            
           </View>
         </Modal>
 
@@ -83,6 +106,7 @@ const styles = StyleSheet.create({
     marginHorizontal: -10,
     marginVertical: 40,
     backgroundColor: 'white',
+    flexDirection:'column',
   },
   description: {
     padding: 20,
@@ -92,9 +116,8 @@ const styles = StyleSheet.create({
   header:{
     color: 'white',
     fontSize: 32,
-    alignSelf: 'stretch',
-    flex: 1,
     fontWeight: 'bold',
+    paddingBottom: 30
   },
   closeBtn:{
     color: 'white',
@@ -106,7 +129,10 @@ const styles = StyleSheet.create({
   row:{
     flex:1, 
     alignSelf: 'stretch', 
-    flexDirection: 'row'
+    flexDirection: 'row',
+    paddingLeft: 20,
+    paddingRight: 20,
+    justifyContent: 'space-between'
   },
   level:{
     width: 80,
@@ -117,8 +143,24 @@ const styles = StyleSheet.create({
   },
   modalHeader:{
     width: '100%',
-    height: 75,
-    flex: 1,
-    padding: 10
-  }
+    height: 400,
+    flex: 3,
+    padding: 10,
+    marginBottom: 30
+    // paddingBottom: 400
+  },
+  modalHeaderContent:{
+    flex:1,
+    justifyContent: 'flex-end',
+    flexDirection: 'column'
+  },
+  modalInfo:{
+    flex:1,
+    flexDirection:'Column',
+    alignItems: 'left',
+  },
+  infoStat:{
+    fontSize: 24,
+    fontWeight:'bold'
+  },
 });

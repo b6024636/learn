@@ -31,6 +31,7 @@ export default class DashboardComponent extends Component {
 
     // console.log(data);
     const other = {
+      'Clue Scrolls Total': data.clueScrolls,
       'Easy Clue Scroll': data.bountyHunter,
       'Medium Clue Scroll': data.bountyHunterRogues,
       'Hard Clue Scroll': data.hardClueScrolls,
@@ -40,15 +41,28 @@ export default class DashboardComponent extends Component {
       'Bounty Hunter': data.easyClueScrolls,
       'Bounty Hunter Rogues': data.mediumClueScrolls,
     };
+    const overallData = data.overall;
     //If object isn't a skill, remove it from the list
     Object.keys(data).map(function(key){
       !(data[key].level) &&
         delete data[key];
     })
+    Object.keys(data).map(function(key){
+      if(data[key].experience){  
+        if(data[key].experience == -1){
+          data[key].experience = 0;
+        }
+      }
+    })
     Object.keys(other).map(function(key){
       (other[key].rank == -1) &&
         delete other[key];
     })
+    Object.keys(data).map(function(key){
+      if(data[key].rank == -1)
+        data[key].rank = 'N/A';
+    })
+    delete data['overall'];
     return (
       <ScrollView style={styles.container}>
         <View style={styles.row}>
@@ -84,7 +98,7 @@ export default class DashboardComponent extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#e5e6ea',
+    backgroundColor: '#DBCBA3',
     paddingLeft: 10,
     paddingRight: 10
   },
