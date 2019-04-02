@@ -5,16 +5,26 @@ import * as Constants from '../lib/constants';
 
 const Links = ({ stat }) => (
   <View style={[styles.row, styles.modalLinks]}>
-    <TouchableOpacity  onPress={ ()=>{ Linking.openURL(Constants.Skills.links.find(item => item.id == stat).f2pUrl)}}>
-      <Text>View F2P Guide</Text>
-    </TouchableOpacity>
-    <TouchableOpacity onPress={ ()=>{ Linking.openURL(Constants.Skills.links.find(item => item.id == stat).p2pUrl)}}>
+    {checkLinkExists(stat)}
+    <TouchableOpacity onPress={ ()=>{ Linking.openURL('https://oldschoolrunescape.fandom.com/wiki/' + Constants.Skills.links.find(item => item.id == stat).p2pUrl)}}>
         <Text>View P2P Guide</Text>
     </TouchableOpacity>
   </View>
 )
 
 export default Links;
+
+function checkLinkExists(stat)
+{
+  let link = Constants.Skills.links.find(item => item.id == stat).f2pUrl;
+  if(link){
+    return  <TouchableOpacity onPress={ ()=>{ Linking.openURL('https://oldschoolrunescape.fandom.com/wiki/' + Constants.Skills.links.find(item => item.id == stat).f2pUrl)}}>
+              <Text>View F2P Guide</Text>
+            </TouchableOpacity>
+  }else{
+    return null;
+  }
+}
 
 const styles = StyleSheet.create({
   modalLinks:{

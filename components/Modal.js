@@ -9,6 +9,7 @@ import cardStyles from '../assets/CardStyles';
 import Links from "./ModalLinks";
 import Bar from "./ProgressBar";
 import Remainder from "./RemainingXp";
+import Icon from './SkillIcon';
 
 class SwipeableModal extends Component {
   state = {
@@ -38,6 +39,9 @@ class SwipeableModal extends Component {
                 >
                   <Text style={styles.closeBtn}>X</Text>
                 </TouchableOpacity>
+              </View>
+              <View style={[styles.row, styles.flexEnd]}>
+                <Icon stat={data.name}/>
               </View>
               <View style={styles.modalHeaderContent}>
                 <Text style={styles.header}>
@@ -163,4 +167,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight:'bold'
   },
+  flexEnd: {
+    justifyContent: 'flex-end'
+  }
 });
