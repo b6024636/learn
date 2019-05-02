@@ -29,15 +29,15 @@ export default class DashboardComponent extends Component {
   render() {
     const data = this.props.userInfo;
 
-    // console.log(data);
+    console.log(data);
     const other = {
-      'Clue Scrolls Total': data.clueScrolls,
-      'Easy Clue Scroll': data.bountyHunter,
-      'Medium Clue Scroll': data.bountyHunterRogues,
-      'Hard Clue Scroll': data.hardClueScrolls,
-      'Elite Clue Scroll': data.eliteClueScrolls,
+      'Clue Scrolls Total': data.bountyHunter,
+      'Easy Clue Scroll': data.hardClueScrolls,
+      'Medium Clue Scroll': data.lastManStanding,
+      'Hard Clue Scroll': data.eliteClueScrolls,
+      'Elite Clue Scroll': data.clueScrolls,
       'Master Clue Scroll': data.masterClueScrolls,
-      'Lastman Standing': data.lastManStanding,
+      'Lastman Standing': data.easyClueScrolls,
       'Bounty Hunter': data.easyClueScrolls,
       'Bounty Hunter Rogues': data.mediumClueScrolls,
     };

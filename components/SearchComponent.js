@@ -15,6 +15,7 @@ import { getUserInfo } from '../services/FetchUser';
 
 import DashboardComponent from './DashboardComponent';
 
+
 export default class SearchComponent extends Component {
   constructor(props) {
     const getUserId = async () => {
